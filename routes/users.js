@@ -3,7 +3,7 @@ var router = express.Router();
 var request = require('request');
 
 /* POST users listing. */
-router.post('/', function(req, res, next) {
+router.post('/getSiteCodes', function(req, res, next) {
 
   res.send('respond with a resource');
 });
