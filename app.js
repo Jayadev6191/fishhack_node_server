@@ -24,7 +24,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.post('/getSiteData',function(req,res){
+app.get('/getSiteData',function(req,res){
   res.send("all ok");
 });
 
