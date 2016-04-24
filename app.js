@@ -12,9 +12,7 @@ var users = require('./routes/users');
 var app = express();
 
 
-app.get('/hello', function(req, res) {
-    res.send("hello world");
-});
+
 
 
 app.post('/sayHello', function(req, res) {
@@ -40,9 +38,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/hello', users);
+
 app.use('/getSiteCodes', users);
 
-
+app.post('/sayHello', function(req, res) {
+    res.send("hello world");
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
