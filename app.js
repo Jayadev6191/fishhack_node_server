@@ -33,14 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
-app.get('/currentLocation',function(){
-  res.send("it works");
-  console.log("hi");
-  // client.get("http://waterservices.usgs.gov/nwis/iv/?format=json&bBox=-83.000000,36.500000,-81.000000,38.500000&parameterCd=00010,00060", function (data, response) {
-  //   // parsed response body as js object
-  //   console.log(data.toString());
-  // });
-});
+app.get('/current',current);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
