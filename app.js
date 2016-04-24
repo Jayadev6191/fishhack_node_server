@@ -9,6 +9,7 @@ var client = new Client();
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var current = require('./routes/current');
 
 var app = express();
 
@@ -32,7 +33,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
-
 app.use('/current',current);
 
 // catch 404 and forward to error handler
