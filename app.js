@@ -24,32 +24,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.post('/register',function(req,res){
-  // console.log(a);
-      var data=JSON.stringify(req.body);
-      var user_data=JSON.parse(data);
-      
-      var user = new Parse.User();
-      
-      user.set("username",user_data.email);
-        user.set("password",user_data.password);
-        user.set("email",user_data.email);
-        user.set("codeName",user_data.codename);
-        user.set("realName",user_data.realname);
-      
-      user.signUp(null,{
-          success: function(user) {
-            // Hooray! Let them use the app now.
-            var currentUser = Parse.User.current();
-            res.send(currentUser.attributes);
-            
-          },
-          error: function(user, error) {
-            // Show the error message somewhere and let the user try again.
-            console.log("Error: " + error.code + " " + error.message);
-          }
-        }); 
-    });
+app.post('/getSiteData',function(req,res){
+  res.send("all ok");
+});
 
 
 server.listen(3000);
