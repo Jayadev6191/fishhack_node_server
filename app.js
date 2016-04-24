@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+var server=http.createServer(app);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,39 +23,34 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/getSiteData', users);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
-// error handlers
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
+app.post('/register',function(req,res){
+  // console.log(a);
+      var data=JSON.stringify(req.body);
+      var user_data=JSON.parse(data);
+      
+      var user = new Parse.User();
+      
+      user.set("username",user_data.email);
+        user.set("password",user_data.password);
+        user.set("email",user_data.email);
+        user.set("codeName",user_data.codename);
+        user.set("realName",user_data.realname);
+      
+      user.signUp(null,{
+          success: function(user) {
+            // Hooray! Let them use the app now.
+            var currentUser = Parse.User.current();
+            res.send(currentUser.attributes);
+            
+          },
+          error: function(user, error) {
+            // Show the error message somewhere and let the user try again.
+            console.log("Error: " + error.code + " " + error.message);
+          }
+        }); 
     });
-  });
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
-});
 
 
+server.listen(3000);
 module.exports = app;
