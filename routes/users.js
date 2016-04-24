@@ -3,7 +3,7 @@ var router = express.Router();
 var request = require('request');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.post('/', function(req, res, next) {
   
   // request.get('',function(error, response, body){
 
