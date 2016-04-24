@@ -4,7 +4,8 @@ var request = require('request');
 
 /* GET users listing. */
 router.post('/', function(req, res, next) {
-  
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', '*');
   // request.get('',function(error, response, body){
 
   // });
