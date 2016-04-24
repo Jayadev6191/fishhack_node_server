@@ -1,5 +1,4 @@
-var express = require('express'),
-cors = require('cors');
+var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -11,20 +10,6 @@ var users = require('./routes/users');
 
 var app = express();
 
-
-
-
-
-app.post('/sayHello', function(req, res) {
-    // var user_id = req.body.id;
-    // var token = req.body.token;
-    // var geo = req.body.geo;
-
-    res.send("hello world");
-});
-
-
-app.use(cors());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -38,13 +23,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/hello', users);
-
-app.use('/getSiteCodes', users);
-
-app.post('/sayHello', function(req, res) {
-    res.send("hello world");
-});
+app.use('/getSiteData', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
