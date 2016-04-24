@@ -12,15 +12,6 @@ var users = require('./routes/users');
 
 var app = express();
 
-app.get('/currentLocation',function(req,res){
-  res.send("it works");
-  console.log("hi");
-  // client.get("http://waterservices.usgs.gov/nwis/iv/?format=json&bBox=-83.000000,36.500000,-81.000000,38.500000&parameterCd=00010,00060", function (data, response) {
-  //   // parsed response body as js object
-  //   console.log(data.toString());
-  // });
-});
-
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -41,6 +32,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+
+app.get('/currentLocation',function(req,res){
+  res.send("it works");
+  console.log("hi");
+  // client.get("http://waterservices.usgs.gov/nwis/iv/?format=json&bBox=-83.000000,36.500000,-81.000000,38.500000&parameterCd=00010,00060", function (data, response) {
+  //   // parsed response body as js object
+  //   console.log(data.toString());
+  // });
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
